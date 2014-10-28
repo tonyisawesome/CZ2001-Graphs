@@ -7,7 +7,7 @@ public class MainApp
 	{
 		LinkedList[] adjList;
 		long time;
-		long counter[][] = new long[2][2];
+		long counter[]   = new long[2];
 		long start  	 = 0;
 		long runs        = 10000;
 		Scanner sc       = new Scanner(System.in);
@@ -29,9 +29,6 @@ public class MainApp
 			}
 			time = System.nanoTime() - start;
 			
-			System.out.println("<Modified mergeSort() method>");
-			System.out.println("Number of key comparisons: " + counter[0][0]);
-			System.out.println("Number of recursions: "  + counter[0][1]);
 			System.out.printf("Each sorting using the modified mergeSort() method took an average of %d ns\n", time/runs);
 			System.out.println();
 
