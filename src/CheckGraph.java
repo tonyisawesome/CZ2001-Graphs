@@ -50,13 +50,9 @@ public class CheckGraph
 	
 	/*public static boolean findDuplicate(LinkedList linkedList)
 	{
-		LinkedList head = linkedList;
 		LinkedList cur, next;
 		
-		if(head != null) return false;
-		else{
-			while
-		}
+		while (cur != null)
 	}*/
 	
 }
