@@ -13,8 +13,8 @@ public class CheckGraph implements ConstantsInterface
 
 		try{
 			//ReadFile file = new ReadFile(file_name);
-			//adjList = file.OpenFile();
-			adjList = ReadFile.OpenFile(file_name);
+			//adjList = file.OpenFile();				// open raw file
+			adjList = ReadFile.OpenFile(file_name);  	// open adjacency list file
 		} 
 		catch (IOException e){
 			System.out.println(e.getMessage());
@@ -24,11 +24,11 @@ public class CheckGraph implements ConstantsInterface
 				if(adjList[i] == null) System.out.println(i);
 			}
 
-			for(int i = 0; i < COUNTRIES; i++){
+			/*for(int i = 0; i < COUNTRIES; i++){
 				removeDuplicate(adjList[i]);
-			}
+			}*/
 			
-			//printAdjList(adjList);
+			printAdjList(adjList);
 			//DataSynthesis.writeAdjList(adjList);
 			System.out.println("Fin.");
 			

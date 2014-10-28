@@ -79,14 +79,16 @@ public class ReadFile implements ConstantsInterface
 		head = cur = null;
 		
 		for (int i = 0; i < textPart.length; i++){
+			//System.out.println(textPart[i]);
+			
 			if (head == null){
 				head = new LinkedList(Integer.parseInt(textPart[i]));
 				cur  = head;
 			}
 			else{
-				cur.addNeighbour(Integer.parseInt(textPart[i]));
+				cur.addNeighbour(Integer.parseInt(textPart[i]));	
+				cur = cur.next;
 			}
-			cur = cur.next;
 		}
 		
 		return head;
