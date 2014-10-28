@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-public class TestApp 
+public class MainApp 
 {
 	public static void main(String[] args)
 	{

@@ -24,7 +24,6 @@ public class CheckGraph
 			}
 			
 			printAdjList(adjList);
-			
 			System.out.println("Fin");
 			
 			sc.close();
@@ -47,4 +46,17 @@ public class CheckGraph
 			System.out.println();
 		}
 	}
+	
+	
+	/*public static boolean findDuplicate(LinkedList linkedList)
+	{
+		LinkedList head = linkedList;
+		LinkedList cur, next;
+		
+		if(head != null) return false;
+		else{
+			while
+		}
+	}*/
+	
 }

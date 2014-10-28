@@ -18,31 +18,41 @@ public class ReadFile
 		FileReader fr = new FileReader(path);
 		BufferedReader textReader = new BufferedReader(fr);
 		
-		LinkedList[] adjList = new LinkedList[COUNTRIES];
+		LinkedList[] linkedList = new LinkedList[COUNTRIES];
 		int j, k;
 		
 		for (int i = 0; i < SIZE; i++){
-			LinkedList cur;
 			String[] textPart = textReader.readLine().split(",");
+			
 			j = Integer.parseInt(textPart[0]);
-			//System.out.println("textPart[0]: " + j);
 			k = Integer.parseInt(textPart[1]);
-			//System.out.println("textPart[1]: " + k);
-			if (adjList[j] == null) adjList[j] = new LinkedList(k);
-			else{
-				cur = adjList[j];
-				while (cur.next != null) cur = cur.next;
-				cur.addNeighbour(k);
-			}
-			if (adjList[k] == null) adjList[k] = new LinkedList(j);
-			else{ 	
-				cur = adjList[k];
-				while (cur.next != null) cur = cur.next;				
-				cur.addNeighbour(j);
-			}
+			
+			populateAdjList(linkedList, j, k);
 		}
 		
 		textReader.close();
-		return adjList;
+		return linkedList;
+	}
+
+	public void populateAdjList(LinkedList[] linkedList, int j, int k)
+	{
+		LinkedList cur;
+		
+		// undirected graph
+		// J -> K
+		if (linkedList[j] == null) linkedList[j] = new LinkedList(k);
+		else{
+			cur = linkedList[j];
+			while (cur.next != null) cur = cur.next;
+			cur.addNeighbour(k);
+		}
+					
+		// K -> J
+		if (linkedList[k] == null) linkedList[k] = new LinkedList(j);
+		else{ 	
+			cur = linkedList[k];
+			while (cur.next != null) cur = cur.next;				
+			cur.addNeighbour(j);
+		}
 	}
 }
