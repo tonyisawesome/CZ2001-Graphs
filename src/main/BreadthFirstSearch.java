@@ -5,9 +5,10 @@ import java.util.*;
 
 public class BreadthFirstSearch
 {
-	public static void breadthFirstSearch(Vector<City> adjList ,City startCity, City endCity){
+	private static Vector<City> distance = new Vector<City>();
+	
+	public static Vector<City> search(Vector<City> adjList ,City startCity, City endCity){
 		Vector<City> queue    = new Vector<City>();
-		Vector<City> distance = new Vector<City>();
 		int id 				  = 0;
 		boolean found 		  = false;
 
@@ -33,8 +34,7 @@ public class BreadthFirstSearch
 					if(endCity.getIndex() == neighbour.getIndex()){
 						//CPUtimeEnd = System.nanoTime();
 						found = true;
-						findShortestRoute(endCity, distance);
-						printShortestRoute(distance);
+						findShortestRoute(endCity);
 						break;
 					}
 				}
@@ -42,22 +42,15 @@ public class BreadthFirstSearch
 			
 			if(found) break;
 		}
+		
+		return distance;
 	}
 
-	public static void printShortestRoute(Vector<City> route){
-		for(int i = route.size()-1; i > 0; i--){
-			System.out.print(route.get(i).getIndex() + " --> ");
-		}
-
-		System.out.println(route.get(0).getIndex());
-		System.out.println("Number of stops: " + (route.size()-1));
-	} 
-
-	public static void findShortestRoute(City city, Vector<City> route){
+	public static void findShortestRoute(City city){
 		Vector<City> neighbours = new Vector<City>();
 		City neighbour;
 		
-		route.add(city);
+		distance.add(city);
 		
 		if(city.getId() == 0) return;
 
@@ -67,7 +60,7 @@ public class BreadthFirstSearch
 			
 			if(neighbour.getId() != -1 && 
 			   neighbour.getId() < city.getId()){
-				findShortestRoute(neighbour, route);
+				findShortestRoute(neighbour);
 				return;
 			}
 		}

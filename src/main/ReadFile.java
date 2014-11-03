@@ -11,9 +11,9 @@ public class ReadFile implements ConstantsInterface
 	private static BufferedReader textReader;
 	
 	// open file containing city names
-	public static String[] openCityNamesFile() throws IOException
+	public static String[] openCityNamesFile(String path) throws IOException
 	{
-		fr 		   		  = new FileReader(NAMES_PATH);
+		fr 		   		  = new FileReader(path);
 		textReader 		  = new BufferedReader(fr);
 		String[] cityName = new String[TOTAL_CITY_NAMES];
 		
@@ -25,7 +25,7 @@ public class ReadFile implements ConstantsInterface
 	}
 	
 	// open file containing adjacency list
-	public static Vector<City> openFile(String path) throws IOException
+	public static Vector<City> openGraphFile(String path) throws IOException
 	{
 		fr 			  	     = new FileReader(path);
 		textReader 	  	     = new BufferedReader(fr);
