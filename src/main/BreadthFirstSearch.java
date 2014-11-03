@@ -56,7 +56,7 @@ public class BreadthFirstSearch
 	public static void findShortestRoute(City city, Vector<City> route){
 		Vector<City> neighbours = new Vector<City>();
 		City neighbour;
-		System.out.println(city.getId() + "|" + city.getIndex());
+		
 		route.add(city);
 		
 		if(city.getId() == 0) return;
