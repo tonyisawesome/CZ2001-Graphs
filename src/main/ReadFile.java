@@ -38,7 +38,7 @@ public class ReadFile implements ConstantsInterface
 			
 			// add neighbours to city based on adjacency list
 			for(String id : index){
-				city.addNeighbour(Integer.parseInt(id));
+				city.addNeighbourIndex(Integer.parseInt(id));
 			}
 			
 			adjList.add(city);

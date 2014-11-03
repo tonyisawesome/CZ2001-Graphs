@@ -16,7 +16,8 @@ public class MainApp implements ConstantsInterface
 		Scanner sc       	 = new Scanner(System.in);
 
 		/* please edit the directory accordingly */
-		String file_name = "storage/emulated/0/Codes/CZ2001-Graphs/src/txt/Graph (" + TOTAL_CITIES + ") TEST.txt";
+		String file_name = "src/txt/Graph (" + TOTAL_CITIES + ") TEST.txt";
+		//String file_name = "storage/emulated/0/Codes/CZ2001-Graphs/src/txt/Graph (" + TOTAL_CITIES + ") TEST.txt";
 
 		try{
 			adjList   = ReadFile.openFile(file_name);
@@ -29,11 +30,11 @@ public class MainApp implements ConstantsInterface
 			//printAdjList(adjList);
 			
 			City origin = adjList.get(0);
-			City end = adjList.get(1);
+			City end = adjList.get(19);
 			BreadthFirstSearch.breadthFirstSearch(adjList, origin, end);
 			
 			System.out.println("Total number of cities: " + TOTAL_CITIES);
-			System.out.println("Total number of edges : "  + countEdge(adjList));
+			System.out.println("Total number of edges : " + countEdge(adjList));
 			
 			sc.close();
 		}
@@ -45,7 +46,7 @@ public class MainApp implements ConstantsInterface
 			City city = adjList.get(i);
 			
 			System.out.print("[" + i + "] ");
-			Vector<Integer> neighbourIndex = city.getNeighbours();
+			Vector<Integer> neighbourIndex = city.getNeighbourIndex();
 			
 			int j = 0;
 		

@@ -9,38 +9,38 @@ public class BreadthFirstSearch
 		Vector<City> queue    = new Vector<City>();
 		Vector<City> distance = new Vector<City>();
 		int id 				  = 0;
+		boolean found 		  = false;
 
 		startCity.visited(true);
 		startCity.setId(id);
 		queue.add(startCity);
 
-		//int j = 0;
 		while(queue.size() > 0){
-			//int j = 0;
 			City city = queue.remove(0);
-			Vector<Integer> neighbourIndex = city.getNeighbours();
+			Vector<Integer> neighbourIndex = city.getNeighbourIndex();
 			City neighbour;
-			//System.out.println(j++);
-
-			//int j = 0;
+			
 			for(int i = 0; i < neighbourIndex.size(); i++){
 				neighbour = adjList.get(neighbourIndex.get(i));
 				
 				if(!neighbour.isVisited()){
 					neighbour.visited(true);
-					neighbour.setId(id++);
+					neighbour.setId(++id);
 					queue.add(neighbour);
-					//System.out.println(j++);
+					city.addEdge(neighbour);
+					neighbour.addEdge(city);
+					
 					if(endCity.getIndex() == neighbour.getIndex()){
-						//System.out.println(j++);
 						//CPUtimeEnd = System.nanoTime();
-						findShortestRoute(endCity, distance, adjList);
+						found = true;
+						findShortestRoute(endCity, distance);
 						printShortestRoute(distance);
 						break;
 					}
 				}
 			}
-			break;
+			
+			if(found) break;
 		}
 	}
 
@@ -50,25 +50,24 @@ public class BreadthFirstSearch
 		}
 
 		System.out.println(route.get(0).getIndex());
-		System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@ | Number of stops: " + route.size() + "     | @@@@@@@@@@@@@@@@@@@@@@@@@@");
+		System.out.println("Number of stops: " + (route.size()-1));
 	} 
 
-	public static void findShortestRoute(City city, Vector<City> route, Vector<City> adjList){
-		Vector<Integer> neighbourIndex = new Vector<Integer>();
+	public static void findShortestRoute(City city, Vector<City> route){
+		Vector<City> neighbours = new Vector<City>();
 		City neighbour;
-
+		System.out.println(city.getId() + "|" + city.getIndex());
 		route.add(city);
 		
 		if(city.getId() == 0) return;
 
-		neighbourIndex = city.getNeighbours();
-		
-		for(int i = 0; i < neighbourIndex.size(); i++){
-			neighbour = adjList.get(neighbourIndex.get(i));
+		neighbours = city.getNeighbours();
+		for(int i = 0; i < neighbours.size(); i++){
+			neighbour = neighbours.get(i);
 			
 			if(neighbour.getId() != -1 && 
 			   neighbour.getId() < city.getId()){
-				findShortestRoute(neighbour, route, adjList);
+				findShortestRoute(neighbour, route);
 				return;
 			}
 		}

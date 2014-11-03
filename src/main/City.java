@@ -8,12 +8,14 @@ public class City
 	private int index;
 	private boolean visited;
 	private Vector<Integer> neighbourIndex;
+	private Vector<City> neighbours;
 	
 	// constructor
 	public City(int index){
 		this.index 	   = index;
 		id         	   = -1;
 		visited    	   = false;
+		neighbours     = new Vector<City>(0);
 		neighbourIndex = new Vector<Integer>(0);
 	}
 	
@@ -26,8 +28,12 @@ public class City
 		return index;
 	}
 	
-	public Vector<Integer> getNeighbours(){
+	public Vector<Integer> getNeighbourIndex(){
 		return neighbourIndex;
+	}
+	
+	public Vector<City> getNeighbours(){
+		return neighbours;
 	}
 	
 	public int getEdges(){
@@ -43,8 +49,12 @@ public class City
 		this.visited = visited;
 	}
 	
-	public void addNeighbour(int neighbour){
-		neighbourIndex.add(neighbour);
+	public void addEdge(City city){
+		neighbours.add(city);
+	}
+	
+	public void addNeighbourIndex(int index){
+		neighbourIndex.add(index);
 	}
 	
 	// instance methods
