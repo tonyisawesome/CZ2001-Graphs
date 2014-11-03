@@ -1,36 +1,55 @@
 package main;
 
+import java.util.Vector;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class ReadFile implements ConstantsInterface
 {
-	private static String path;
+	private static FileReader fr;
+	private static BufferedReader textReader;
 	
-	public ReadFile(String file_path)
+	// open file containing city names
+	public static String[] openCityNamesFile() throws IOException
 	{
-		path = file_path;
+		fr 		   		  = new FileReader(NAMES_PATH);
+		textReader 		  = new BufferedReader(fr);
+		String[] cityName = new String[TOTAL_CITY_NAMES];
+		
+		for(int i = 0; i < TOTAL_CITY_NAMES; i++){
+			cityName[i] = textReader.readLine();
+		}
+		
+		return cityName;
 	}
 	
 	// open file containing adjacency list
-	public LinkedList[] OpenFile() throws IOException
+	public static Vector<City> openFile(String path) throws IOException
 	{
-		FileReader fr = new FileReader(path);
-		BufferedReader textReader = new BufferedReader(fr);
+		fr 			  	     = new FileReader(path);
+		textReader 	  	     = new BufferedReader(fr);
+		Vector<City> adjList = new Vector<City>(TOTAL_CITIES);
+		City city;
 		
-		LinkedList[] adjList = new LinkedList[DESTINATIONS];
-		
-		for (int i = 0; i < DESTINATIONS; i++){
-			String[] textPart = textReader.readLine().split(" -> ");
-			adjList[i] 		  = formLinkedList(textPart);
+		for (int i = 0; i < TOTAL_CITIES; i++){
+			city 		   = new City(i);
+			String[] index = textReader.readLine().split(" -> ");
+			
+			// add neighbours to city based on adjacency list
+			for(String id : index){
+				city.addNeighbour(Integer.parseInt(id));
+			}
+			
+			adjList.add(city);
 		}
 		
 		textReader.close();
+		
 		return adjList;
 	}
 	
-	public LinkedList formLinkedList(String[] textPart)
+	/*public LinkedList formLinkedList(String[] textPart)
 	{
 		LinkedList head, cur;
 		
@@ -49,5 +68,5 @@ public class ReadFile implements ConstantsInterface
 		}
 		
 		return head;
-	}
+	}*/
 }

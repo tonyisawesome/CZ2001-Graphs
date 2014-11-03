@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.Vector;
 import java.util.Scanner;
 
 public class MainApp implements ConstantsInterface
@@ -10,66 +11,62 @@ public class MainApp implements ConstantsInterface
 		long time;
 		long start  	 	 = 0;
 		long runs        	 = 10000;
-		LinkedList[] adjList = new LinkedList[DESTINATIONS];
+		String[] cityNames   = new String[TOTAL_CITY_NAMES];
+		Vector<City> adjList = new Vector<City>(TOTAL_CITIES);
 		Scanner sc       	 = new Scanner(System.in);
 
 		/* please edit the directory accordingly */
-		String file_name = "src/txt/Graph (" + DESTINATIONS + ") TEST.txt";
+		String file_name = "storage/emulated/0/Codes/CZ2001-Graphs/src/txt/Graph (" + TOTAL_CITIES + ") TEST.txt";
 
 		try{
-			ReadFile file = new ReadFile(file_name);
-			adjList = file.OpenFile();
+			adjList   = ReadFile.openFile(file_name);
+			//cityNames = ReadFile.openCityNamesFile();
 		} 
 		catch (IOException e){
 			System.out.println(e.getMessage());
 		}
 		finally{
 			//printAdjList(adjList);
-			System.out.println("Total number of cities: " + DESTINATIONS);
-			System.out.println("Total number of edges: "  + countEdge(adjList));
 			
-			/*for (int i = -10000; i < runs; i++) { 		// measure average CPU time taken
-			    if (i == 0) start = System.nanoTime();
-				// function to test here
-			}
-			time = System.nanoTime() - start;
+			City origin = adjList.get(0);
+			City end = adjList.get(1);
+			BreadthFirstSearch.breadthFirstSearch(adjList, origin, end);
 			
-			System.out.printf("Each sorting using the modified mergeSort() method took an average of %d ns\n", time/runs);
-			System.out.println();*/
-
+			System.out.println("Total number of cities: " + TOTAL_CITIES);
+			System.out.println("Total number of edges : "  + countEdge(adjList));
+			
 			sc.close();
 		}
 	}
 	
-	public static void printAdjList(LinkedList[] adjList)
+	public static void printAdjList(Vector<City> adjList)
 	{
-		LinkedList cur = null;
-		
-		for(int i = 0; i < DESTINATIONS; i++){
-			cur = adjList[i];
-			System.out.print("[" + i + "] " + cur.city);
+		for(int i = 0; i < TOTAL_CITIES; i++){
+			City city = adjList.get(i);
 			
-			while(cur.next != null){
-				cur = cur.next;
-				System.out.print(" -> " + cur.city);
+			System.out.print("[" + i + "] ");
+			Vector<Integer> neighbourIndex = city.getNeighbours();
+			
+			int j = 0;
+		
+			for(Integer neighbour : neighbourIndex){
+				System.out.print(neighbour);
+				
+				if(j++ != neighbourIndex.size()-1){
+					System.out.print(" -> ");
+					}
 			}
 			
 			System.out.println();
 		}
 	}
 	
-	public static long countEdge(LinkedList[] adjList)
+	public static long countEdge(Vector<City> adjList)
 	{
-		LinkedList cur = null;
 		long count = 0;
 
-		for (int i = 0; i < adjList.length; i++){
-			cur = adjList[i];
-			
-			while(cur != null){
-				count++;
-				cur = cur.next;
-			}
+		for (int i = 0; i < adjList.size(); i++){
+			count += adjList.get(i).getEdges();
 		}
 		
 		return count/2;
