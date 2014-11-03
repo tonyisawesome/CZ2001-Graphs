@@ -14,7 +14,7 @@ public class MainApp implements ConstantsInterface
 		Scanner sc       	 = new Scanner(System.in);
 
 		/* please edit the directory accordingly */
-		String file_name = "C:/Users/Tony/Documents/GitHub/CZ2001-Graphs/Graph (" + DESTINATIONS + ") TEST.txt";
+		String file_name = "src/txt/Graph (" + DESTINATIONS + ") TEST.txt";
 
 		try{
 			ReadFile file = new ReadFile(file_name);
