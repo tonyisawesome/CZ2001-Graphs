@@ -61,7 +61,7 @@ public class MainApp implements ConstantsInterface
 			int j = 0;
 		
 			for(Integer neighbour : neighbourIndex){
-				System.out.print(neighbour);
+				System.out.print(cityNames[neighbour]);
 				
 				if(j++ != neighbourIndex.size()-1){
 					System.out.print(" -> ");
