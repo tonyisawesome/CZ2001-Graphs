@@ -17,7 +17,7 @@ public class MainApp implements ConstantsInterface
 
 		/* please edit the directory accordingly */
 		String graph_path 	   = "src/txt/Graph (" + TOTAL_CITIES + ").txt";
-		String city_names_path = "src/txt/City Names.txt";
+		String city_names_path = "src/txt/Cities.txt";
 		//String file_name = "storage/emulated/0/Codes/CZ2001-Graphs/src/txt/Graph (" + TOTAL_CITIES + ") TEST.txt";
 
 		try{

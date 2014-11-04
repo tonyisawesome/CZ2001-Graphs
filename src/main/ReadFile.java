@@ -19,6 +19,7 @@ public class ReadFile implements ConstantsInterface
 		
 		for(int i = 0; i < TOTAL_CITY_NAMES; i++){
 			cityName[i] = textReader.readLine();
+			System.out.println(cityName[i]);
 		}
 		
 		return cityName;
