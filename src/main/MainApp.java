@@ -29,13 +29,15 @@ public class MainApp implements ConstantsInterface
 		}
 		finally{
 			//printAdjList(adjList);
+			City origin, end;
+			
 			System.out.print("Enter origin: ");
-			City origin = strToCity(sc.nextLine());
+			origin = strToCity(sc.nextLine());
 			System.out.print("Enter destination: ");
-			City end = strToCity(sc.nextLine());
+			end = strToCity(sc.nextLine());
 			printShortestRoute(BreadthFirstSearch.search(graph, origin, end));
 			
-			System.out.println("Total number of cities: " + TOTAL_CITIES);
+			System.out.println("\nTotal number of cities: " + TOTAL_CITIES);
 			System.out.println("Total number of edges : " + countEdge(graph));
 			
 			sc.close();
@@ -43,6 +45,8 @@ public class MainApp implements ConstantsInterface
 	}
 
 	public static void printShortestRoute(Vector<City> route){
+		System.out.println();
+		
 		for(int i = route.size()-1; i > 0; i--){
 			System.out.print(cityNames[route.get(i).getIndex()] + " --> ");
 		}
@@ -83,9 +87,15 @@ public class MainApp implements ConstantsInterface
 	}
 	
 	public static City strToCity(String name){
-		int i;
+		int i = 0;
 		
-		for(i = 0; cityNames[i].equals(name); i++){}
+		for(String cityName : cityNames){
+			if(cityName.equals(name)){
+				break;
+			}
+			
+			i++;
+		}
 		
 		return graph.get(i);
 	}

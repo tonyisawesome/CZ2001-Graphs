@@ -18,8 +18,11 @@ public class ReadFile implements ConstantsInterface
 		String[] cityName = new String[TOTAL_CITY_NAMES];
 		
 		for(int i = 0; i < TOTAL_CITY_NAMES; i++){
-			cityName[i] = textReader.readLine();
-			System.out.println(cityName[i]);
+			do{
+				cityName[i] = textReader.readLine().trim();
+			}while(cityName[i].equals(""));
+			
+			//System.out.println(cityName[i]);
 		}
 		
 		return cityName;
@@ -49,25 +52,4 @@ public class ReadFile implements ConstantsInterface
 		
 		return adjList;
 	}
-	
-	/*public LinkedList formLinkedList(String[] textPart)
-	{
-		LinkedList head, cur;
-		
-		head = cur = null;
-		
-		for (int i = 0; i < textPart.length; i++){
-			
-			if (head == null){
-				head = new LinkedList(Integer.parseInt(textPart[i]));
-				cur  = head;
-			}
-			else{
-				cur.addNeighbour(Integer.parseInt(textPart[i]));	
-				cur = cur.next;
-			}
-		}
-		
-		return head;
-	}*/
 }

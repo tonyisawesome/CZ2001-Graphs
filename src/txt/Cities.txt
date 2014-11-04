@@ -17,7 +17,7 @@ Minsk
 Brussels
 Belmopan
 Thimphu
-Sucre  
+Sucre
 Sarajevo
 Gaborone
 Brasília
@@ -31,7 +31,7 @@ Ottawa
 Praia
 Bangui
 N'Djamena
-Santiago 
+Santiago
 Beijing
 Bogotá
 Moroni
