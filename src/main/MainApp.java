@@ -33,8 +33,10 @@ public class MainApp implements ConstantsInterface
 			
 			System.out.print("Enter origin: ");
 			origin = strToCity(sc.nextLine());
+			//System.out.println(origin.getIndex());
 			System.out.print("Enter destination: ");
 			end = strToCity(sc.nextLine());
+			//System.out.println(end.getIndex());
 			printShortestRoute(BreadthFirstSearch.search(graph, origin, end));
 			
 			System.out.println("\nTotal number of cities: " + TOTAL_CITIES);
